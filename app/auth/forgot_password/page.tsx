@@ -1,17 +1,26 @@
 "use client";
 import React, { useState } from "react";
 import InputField from "@/components/auth/InputField";
+import { auth } from "@/app/firebase/config";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const ForgotPassword = () => {
 	const [email, setEmail] = useState<string>("");
-	const [message, setMessage] = useState<string>("");
 
 	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(e.target.value);
 	};
 
+	// Password reset feature
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		try {
+			await sendPasswordResetEmail(auth, email);
+			alert("Password reset link sent to your email");
+		} catch (error) {
+			console.error("Error sending password reset email:", error);
+			alert("An error occurred. Please try again later");
+		}
 	};
 
 	return (
@@ -34,9 +43,6 @@ const ForgotPassword = () => {
 					Send Reset Link
 				</button>
 			</form>
-			{message && (
-				<p className="mt-4 text-center text-sm text-gray-600">{message}</p>
-			)}
 		</div>
 	);
 };
