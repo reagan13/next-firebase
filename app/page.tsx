@@ -18,7 +18,7 @@ export default function Home() {
 		router.push("/auth/login");
 	};
 	return (
-		<div className="flex items-center justify-center h-screen">
+		<div className="flex items-center justify-center h-screen flex-col">
 			<h1 className="text-4xl font-bold">Welcome to Our Application!</h1>
 			<button
 				onClick={handleLogout}

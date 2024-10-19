@@ -25,6 +25,7 @@ const Login = () => {
 				router.push("/");
 			} else {
 				console.error("Login failed");
+				alert("Login failed");
 			}
 		} catch (error) {
 			console.error("Login failed", error);

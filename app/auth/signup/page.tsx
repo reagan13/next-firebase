@@ -34,6 +34,7 @@ const SignUp = () => {
 				router.push("/auth/login");
 			} else {
 				console.error("Signup failed");
+				alert("Signup failed");
 			}
 		} catch (e) {
 			console.error(e);
